@@ -13,15 +13,15 @@ const itemsReducer = createReducer(
   {
     // Giving items. This means incrementing an item count.
     [GIVE_ITEM.type]: (state, { payload }: ReturnType<typeof GIVE_ITEM>) => {
-      state[payload.item.name] = (state[payload.item.name] || 0) + payload.count;
+      state[payload.item.toString()] = (state[payload.item.toString()] || 0) + payload.count;
     },
     // Taking items. This means decrementing an item count. The minimum count is 0.
-    [TAKE_ITEM.type]: (state, { payload }: ReturnType<typeof GIVE_ITEM>) => {
-      state[payload.item.name] = Math.max(0, (state[payload.item.name] || 0) - payload.count);
+    [TAKE_ITEM.type]: (state, { payload }: ReturnType<typeof TAKE_ITEM>) => {
+      state[payload.item.toString()] = Math.max(0, (state[payload.item.toString()] || 0) - payload.count);
     },
     // Setting items. This means setting an item's exact count. The minimum count is 0.
-    [SET_ITEM.type]: (state, { payload }: ReturnType<typeof GIVE_ITEM>) => {
-      state[payload.item.name] = Math.max(0, payload.count);
+    [SET_ITEM.type]: (state, { payload }: ReturnType<typeof SET_ITEM>) => {
+      state[payload.item.toString()] = Math.max(0, payload.count);
     }
   }
 );

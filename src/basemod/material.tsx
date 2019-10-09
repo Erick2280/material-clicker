@@ -1,8 +1,8 @@
-import { Item } from '../mod-api';
+import { Item, register } from '../mod-api';
 
 /** The main currency in Material Clicker */
 class Material extends Item {
   name = 'Material';
 }
 
-export default Material;
+export default register(Material);

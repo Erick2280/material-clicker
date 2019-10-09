@@ -1,7 +1,13 @@
 {
   "name": "material-clicker",
+  "description": "A highly-moddable clicker game using React and Material UI.",
+  "author": {
+    "name": "Reverse Squared"
+  },
   "version": "0.1.0",
   "private": true,
+  "main": "build/electron.js",
+  "homepage": "./",
   "dependencies": {
     "@types/jest": "24.0.18",
     "@types/node": "12.7.11",
@@ -18,7 +24,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-start": "electron .",
+    "build-electron": "electron-builder",
+    "full-send": "npm run build && npm run build-electron"
   },
   "browserslist": {
     "production": [
@@ -34,6 +43,8 @@
   },
   "devDependencies": {
     "@material-ui/core": "^4.5.0",
+    "electron": "^6.0.11",
+    "electron-builder": "^21.2.0",
     "prettier": "^1.18.2",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
@@ -42,5 +53,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.1.0",
     "typescript-tslint-plugin": "^0.5.4"
+  },
+  "build": {
+    "appId": "io.github.reverse-squared.material-clicker"
   }
 }

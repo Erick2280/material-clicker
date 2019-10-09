@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 import rootReducer from './reducers';
-import { Items } from './reducers/items-reducer';
+import { RItems } from './reducers/items-reducer';
 
 const reduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__;
 
@@ -13,5 +13,5 @@ const store = createStore(
 export default store;
 
 export interface Store {
-  items: Items;
+  items: RItems;
 }

@@ -1,25 +1,29 @@
-import syncReducer from 'sync-reducer';
+import { createReducer } from "redux-starter-kit";
+import { GIVE_ITEM, TAKE_ITEM, SET_ITEM } from "../actions";
 
-import { ItemsActionObject } from '../actions';
-
-export interface Items {
-  material: number;
+/** Item Reducer State */
+export interface RItems {
+  [internalItemID: string]: number;
 }
 
-const initialState: Items = {
-  material: 0
-};
+// TODO: fully figure out resolving the 'internal item id'
 
-function itemsReducer(state: Items = initialState, action: ItemsActionObject) {
-  if(action.type === 'ADD_ITEM') {
-    const newState = { ...state };
-
-    // TODO: this.
-
-    return newState;
+const itemsReducer = createReducer(
+  {} as RItems,
+  {
+    // Giving items. This means incrementing an item count.
+    [GIVE_ITEM.type]: (state, { payload }: ReturnType<typeof GIVE_ITEM>) => {
+      state[payload.item.name] = (state[payload.item.name] || 0) + payload.count;
+    },
+    // Taking items. This means decrementing an item count. The minimum count is 0.
+    [TAKE_ITEM.type]: (state, { payload }: ReturnType<typeof GIVE_ITEM>) => {
+      state[payload.item.name] = Math.max(0, (state[payload.item.name] || 0) - payload.count);
+    },
+    // Setting items. This means setting an item's exact count. The minimum count is 0.
+    [SET_ITEM.type]: (state, { payload }: ReturnType<typeof GIVE_ITEM>) => {
+      state[payload.item.name] = Math.max(0, payload.count);
+    }
   }
+);
 
-  return state;
-}
-
-export default syncReducer(itemsReducer, 'items-reducer');
+export default itemsReducer;

@@ -53,6 +53,6 @@
     "typescript-tslint-plugin": "^0.5.4"
   },
   "build": {
-    "appId": "com.netlify.reverse-squared.material-clicker"
+    "appId": "io.github.reverse-squared.material-clicker"
   }
 }

@@ -5,6 +5,7 @@ export * from './shop-item';
 export * from './effect';
 export * from './effect-helpers';
 
-export function register<T extends typeof IdClass>(Class: T) {
-  console.log(Class, typeof Class);
+/** Decorator function for registering an IdClass instance (any of the moddable classes) */
+export function register<T extends typeof IdClass>(Class: T, ...args: any[]) {
+  console.log('Register Class', Class.name);
 }

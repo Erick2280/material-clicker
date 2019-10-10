@@ -5,6 +5,8 @@ import { IdClass } from "./id-class";
 
 /** An Item */
 export abstract class Item extends IdClass {
+  static classType = 'Item';
+
   abstract name: string | ReactElement;
 
   public get count() {
@@ -22,7 +24,7 @@ export abstract class Item extends IdClass {
 }
 
 export function getItemCount(item: Item) {
-  return store.getState().items[item.toString()] || 0;
+  return store.getState().items[item.id] || 0;
 }
 export function setItemCount(item: Item, count: number) {
   store.dispatch(SET_ITEM({ item, count }));

@@ -1,9 +1,10 @@
+// tslint:disable: max-classes-per-file
 import React from 'react';
-import { ShopItem, register, item } from '../mod-api';
+import { ShopItem, register, item, GiveItemEffect } from '../mod-api';
 import Material from './material';
 
 /** A sample item in the shop. */
-class SampleShopItem extends ShopItem {
+@register class SampleShopItem extends ShopItem {
   // Display Info
   name = 'Sample Shop Item';
   shortDescription = 'Does stuff.';
@@ -18,9 +19,16 @@ class SampleShopItem extends ShopItem {
 
   // Functioning Info
   maxCount = -1;
-  price = item(Material, 5);
-  effects = [ ]; // TODO
+  price = item(Material, () => this.count * 5 + 5); // level 1 = 5m, level 2 = 10m, 15, 20, etc.
+  effects = [
+    new SampleShopItemEffect()
+  ];
   requirements = [ ];
 }
 
-export default register(SampleShopItem);
+/** the effect for the sample item. Gives 500 material :) */
+@register class SampleShopItemEffect extends GiveItemEffect {
+  items = item(Material, 500);
+}
+
+export default new SampleShopItem();
